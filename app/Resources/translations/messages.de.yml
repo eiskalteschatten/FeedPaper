@@ -5,3 +5,5 @@ mark_all_as_read: Alle als gelesen markieren
 
 all_unread: Ungelesen
 today: Heute
+
+no_feeds_available: Keine Feeds verfügbar

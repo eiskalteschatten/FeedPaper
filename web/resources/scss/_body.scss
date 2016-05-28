@@ -1,4 +1,21 @@
 .body {
     position: absolute;
     left: $sidebarWidth;
+    width: calc(100% - 250px);
+    height: 100%;
+
+    .no-feeds {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        width: 500px;
+        height: 100px;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        color: #d4d4d4;
+
+        .text {
+            font-size: 35px;
+        }
+    }
 }
