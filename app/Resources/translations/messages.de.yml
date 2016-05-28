@@ -9,3 +9,5 @@ today: Heute
 no_feeds_available: Keine Feeds verfügbar
 
 add_new_feed: Neuen Feed hinzufügen
+add_new_feed_name: Feed-Name
+add_new_feed_url: Feed-URL

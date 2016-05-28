@@ -13,7 +13,7 @@ use AppBundle\Entity\Feed;
 class AsyncController extends Controller
 {
     /**
-     * @Route("/async/add-feeds", name="asyncAddFeeds")
+     * @Route("/{_locale}/async/add-feeds", name="asyncAddFeeds")
      */
     public function addFeedsAction(Request $request)
     {
@@ -24,8 +24,8 @@ class AsyncController extends Controller
         $feed->setDateCreated($date);
 
         $form = $this->createFormBuilder($feed)
-            ->add('feed_name', TextType::class)
-            ->add('feed_url', TextType::class)
+            ->add('feed_name', TextType::class, array('label' => $this->get('translator')->trans('add_new_feed_name')))
+            ->add('feed_url', TextType::class, array('label' => $this->get('translator')->trans('add_new_feed_url')))
             ->add('save', SubmitType::class, array('label' => $this->get('translator')->trans('add_new_feed')))
             ->getForm();
 

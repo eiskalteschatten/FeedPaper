@@ -5,6 +5,14 @@
     height: 100%;
     padding: 20px;
 
+    .page-title {
+        font-size: 2em;
+        margin-bottom: 35px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid $bgGray;
+        color: $bgGrayFontColor;
+    }
+
     .no-feeds {
         position: absolute;
         left: 50%;
