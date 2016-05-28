@@ -1,0 +1,74 @@
+.sidebar {
+    background: $bgGray;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: $sidebarWidth;
+    height: 100%;
+    padding: 20px 0;
+    overflow: scroll;
+
+    .section {
+        margin-bottom: 20px;
+    }
+
+    .full-link {
+        display: block;
+        color: $bgGrayFontColor;
+        padding: 5px 15px;
+        width: 100%;
+
+        &:hover {
+            background: #e4e4e4;
+            text-decoration: none;
+        }
+
+        &:active, &:focus {
+            text-decoration: none;
+        }
+
+        &:active {
+            background: #b4b4b4;
+        }
+
+        &.active {
+            background: #d4d4d4;
+        }
+
+        &.small {
+            font-size: 0.9em;
+        }
+
+        .glyphicon {
+            margin-right: 10px;
+        }
+    }
+
+    .logo {
+        text-align: center;
+    }
+
+    .toolbar {
+        text-align: center;
+
+        a {
+            width: 35px;
+            height: 35px;
+            padding: 10px;
+            color: $bgGrayFontColor;
+
+            &:hover {
+                background: #e4e4e4;
+                text-decoration: none;
+            }
+
+            &:active, &:focus {
+                text-decoration: none;
+            }
+
+            &:active {
+                background: #b4b4b4;
+            }
+        }
+    }
+}

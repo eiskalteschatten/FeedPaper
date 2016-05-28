@@ -2,5 +2,14 @@ $screen-sm-min: 767px;
 $screen-md-min: 992px;
 $screen-lg-min: 1200px;
 
+$bgGray: #f4f4f4;
+$bgGrayFontColor: #505050;
 
-//@import "footer";
+$sidebarWidth: 250px;
+
+html, body {
+    height: 100%;
+}
+
+@import "sidebar";
+@import "body";

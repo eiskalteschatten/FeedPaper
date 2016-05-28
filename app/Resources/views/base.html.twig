@@ -9,7 +9,7 @@
         <meta name="author" content="Alex Seifert">
         <meta name="copyright" content="Copyright (c) Alex Seifert">
 
-        <title>{% block title %}{% endblock %}</title>
+        <title>{% block title %}FeedPaper{% endblock %}</title>
 
         {% block stylesheets %}
             <link rel="stylesheet" href="{{ asset('resources/bootstrap-3.3.6-dist/css/bootstrap.min.css') }}" type="text/css">
@@ -19,7 +19,11 @@
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.png') }}" />
     </head>
     <body>
-        {% block body %}{% endblock %}
+        {{ include('components/sidebar.html.twig') }}
+
+        <main class="body">
+            {% block body %}{% endblock %}
+        </main>
 
         {% block javascripts %}
             <script type="text/javascript" src="{{ asset('resources/bootstrap-3.3.6-dist/js/bootstrap.min.js') }}"></script>
