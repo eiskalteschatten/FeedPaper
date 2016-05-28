@@ -22,12 +22,16 @@
         {{ include('components/sidebar.html.twig') }}
 
         <main class="body">
-            {% block body %}{% endblock %}
+            <div class="ajax-loader js-ajax-loader"></div>
+            <div class="js-body-content">
+                {% block body %}{% endblock %}
+            </div>
         </main>
 
         {% block javascripts %}
-            <script type="text/javascript" src="{{ asset('resources/bootstrap-3.3.6-dist/js/bootstrap.min.js') }}"></script>
             <script type="text/javascript" src="{{ asset('resources/js/jquery-2.2.4.min.js') }}"></script>
+            <script type="text/javascript" src="{{ asset('resources/bootstrap-3.3.6-dist/js/bootstrap.min.js') }}"></script>
+            <script type="text/javascript" src="{{ asset('resources/js/scripts.js') }}"></script>
         {% endblock %}
     </body>
 </html>

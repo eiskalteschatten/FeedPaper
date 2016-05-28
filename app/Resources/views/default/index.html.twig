@@ -4,7 +4,7 @@
     {# If there are no feeds, show this: #}
     <div class="no-feeds">
         <div class="text">{% trans %}no_feeds_available{% endtrans %}</div>
-        <a href="#">{% trans %}add_feeds{% endtrans %}</a>
+        <a href="#" onclick="showSection('{{ path('asyncAddFeeds') }}')">{% trans %}add_feeds{% endtrans %}</a>
     </div>
 
     {# else #}
