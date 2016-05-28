@@ -13,9 +13,21 @@ class DefaultController extends Controller
      */
     public function indexAction(Request $request)
     {
-        // replace this example code with whatever you need
-        return $this->render('default/index.html.twig', array(
-            'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..'),
-        ));
+        $currentUrl = $request->getUri();
+
+        if (!strstr($currentUrl, "/en/") && !strstr($currentUrl, "/de/")) {
+            $prefLang = $request->getPreferredLanguage(array('de', 'en'));
+
+            if ($prefLang == "de") {
+                $urlLang = "de";
+            }
+            else {
+                $urlLang = "en";
+            }
+
+            return $this->redirect($this->generateUrl('home', array('_locale' => $urlLang)));
+        }
+
+        return $this->render('default/index.html.twig');
     }
 }
