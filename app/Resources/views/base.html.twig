@@ -1,13 +1,29 @@
 <!DOCTYPE html>
-<html>
+<html lang="{{ app.request.locale }}">
     <head>
         <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9, user-scalable=0"/>
+        <meta name="robots" content="index,follow">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta http-equiv="Content-Language" content="{{ app.request.locale }}" />
+        <meta name="author" content="Alex Seifert">
+        <meta name="copyright" content="Copyright (c) Alex Seifert">
+
+        <title>{% block title %}{% endblock %}</title>
+
+        {% block stylesheets %}
+            <link rel="stylesheet" href="{{ asset('resources/bootstrap-3.3.6-dist/css/bootstrap.min.css') }}" type="text/css">
+            <link rel="stylesheet" href="{{ asset('resources/css/main.css') }}" type="text/css">
+        {% endblock %}
+
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.png') }}" />
     </head>
     <body>
         {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
+
+        {% block javascripts %}
+            <script type="text/javascript" src="{{ asset('resources/bootstrap-3.3.6-dist/js/bootstrap.min.js') }}"></script>
+            <script type="text/javascript" src="{{ asset('resources/js/jquery-2.2.4.min.js') }}"></script>
+        {% endblock %}
     </body>
 </html>
