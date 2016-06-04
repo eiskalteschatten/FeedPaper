@@ -1,3 +1,11 @@
+window.onload = function() {
+    $(window).keypress(function(e) {
+        if (e.keyCode == 27) {
+            closePopup();
+        }
+    });
+}
+
 function openPopup(url, popupClass) {
     $('.js-popup-box').addClass(popupClass);
     $('.js-popup-box').attr('data-popup-class', popupClass);
