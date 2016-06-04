@@ -10,3 +10,5 @@ all_unread: All Unread
 today: Today
 
 no_feeds_available: No feeds available
+
+an_error_occurred: An error occurred. Please try again.

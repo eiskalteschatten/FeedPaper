@@ -2,8 +2,19 @@
     {% trans %}add_new_feed{% endtrans %}
 </div>
 
-<div class="">
+<div class="add-feed-form js-add-feed-form">
     {{ form_start(form) }}
-    {{ form_widget(form) }}
+        {{ form_errors(form) }}
+        {{ form_widget(form) }}
     {{ form_end(form) }}
 </div>
+
+<script type="text/javascript">
+    window.onload = function() {
+        var form = $('.js-add-feed-form').find('form');
+
+        form.submit(function(e) {
+            e.preventDefault();
+        });
+    };
+</script>

@@ -6,8 +6,11 @@ function openPopup(url, popupClass) {
 
     $.get(url, function(data) {
         $('.js-popup-content').html(data);
-
         $('.js-popup-box').addClass('done-loading');
+    }).fail(function() {
+        $('.js-popup-box').addClass('done-loading');
+        var error = $('.js-popup').attr('data-error');
+        $('.js-popup-content').html(error);
     });
 }
 
