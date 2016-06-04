@@ -29,6 +29,12 @@ input {
     border: 1px solid #e4e4e4;
 }
 
+select {
+    padding: 5px 10px;
+    border-radius: 3px;
+    border: 1px solid #e4e4e4;
+}
+
 button {
     background: $bgGray;
     padding: 5px 10px;
