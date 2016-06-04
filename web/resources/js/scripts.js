@@ -69,11 +69,12 @@ function validateFeedTimer(field) {
 // Refresh all feeds
 
 function refreshAllFeeds() {
-    url = $('#refreshButton').attr('data-refresh-url');
+    var url = $('#refreshButton').attr('data-refresh-url');
+    var buttonIcon = $('#refreshButtonIcon');
+    buttonIcon.addClass('spin');
 
     $.post(url, function(data) {
+        buttonIcon.removeClass('spin');
         location.reload();
-    }).fail(function(data) {
-        console.log(data.responseText);
     });
 }

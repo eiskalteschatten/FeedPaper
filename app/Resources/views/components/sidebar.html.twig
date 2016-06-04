@@ -5,7 +5,7 @@
     <div class="section toolbar">
         <a href="#" onclick="openPopup('{{ path('feedsAddFeedForm') }}', 'add-feed')" title="{% trans %}add_new_feed{% endtrans %}"><span class="glyphicon glyphicon-plus"></span></a>
         <a href="#" onclick="openPopup('{{ path('foldersAddFolderForm') }}', 'add-folder')" title="{% trans %}add_folder{% endtrans %}"><span class="glyphicon glyphicon-folder-open"></span></a>
-        <a href="#" onclick="refreshAllFeeds()" data-refresh-url="{{ path('postsRefresh') }}" id="refreshButton" title="{% trans %}refresh{% endtrans %}"><span class="glyphicon glyphicon-refresh"></span></a>
+        <a href="#" onclick="refreshAllFeeds()" data-refresh-url="{{ path('postsRefresh') }}" id="refreshButton" title="{% trans %}refresh{% endtrans %}"><span class="glyphicon glyphicon-refresh" id="refreshButtonIcon"></span></a>
         <a href="#" title="{% trans %}mark_all_as_read{% endtrans %}"><span class="glyphicon glyphicon-ok"></span></a>
     </div>
     <div class="section">
