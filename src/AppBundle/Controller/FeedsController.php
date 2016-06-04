@@ -124,21 +124,23 @@ class FeedsController extends Controller
             $doc->loadHTML(file_get_contents($baseUrl));
             $xml = simplexml_import_dom($doc);
 
-            $array = $xml->xpath('//link[@rel="shortcut icon"]');
+            $elements = $xml->xpath('//link[@rel="shortcut icon"]');
 
-            if (empty($array)) {
-                $array = $xml->xpath('//link[@rel="icon"]');
+            if (empty($elements)) {
+                $elements = $xml->xpath('//link[@rel="icon"]');
             }
 
-            if (!empty($array)) {
-                $icon = $array[0]['href'];
+            if (!empty($elements)) {
+                $icon = $elements[0]['href'];
                 $iconParts = parse_url($icon);
 
                 if (!isset($iconParts['scheme'])) {
                     $icon = $baseUrl . '/' . $icon;
                 }
 
-                return $icon;
+                if (filter_var($icon, FILTER_VALIDATE_URL)) {
+                    return $icon;
+                }
             }
         }
         catch(\Exception $e) {
