@@ -15,18 +15,19 @@ class GetFeedPosts
 
     public function getAllPosts() {
         $date = new \DateTime("now");
+        $em = $this->doctrine->getManager();
 
-        $queryResult = $this->doctrine
+        $feedQueryResult = $this->doctrine
             ->getRepository('AppBundle:Feed')
             ->findAll();
 
         try {
-            foreach ($queryResult as $result) {
+            foreach ($feedQueryResult as $result) {
                 $url = $result->getFeedUrl();
                 $feed = $result->getId();
 
-                $content = file_get_contents($url);
-                $rss = new \SimpleXmlElement($content);
+                $fileContents = file_get_contents($url);
+                $rss = new \SimpleXmlElement($fileContents);
 
                 foreach($rss->channel->item as $entry) {
                     $title = substr($entry->title, 0, 255);
@@ -46,24 +47,27 @@ class GetFeedPosts
 
                         $post = new Post();
                         $post->setDateFetched($date);
-                        $post->setPostTitle($title);
-                        $post->setPostUrl($url);
+                        $post->setPostTitle(utf8_encode($title));
+                        $post->setPostUrl(utf8_encode($url));
                         $post->setPostDate(new \DateTime($entry->pubDate));
                         $post->setIsRead(false);
                         $post->setFeed($feed);
-                        $post->setPostAuthor($author);
-                        $post->setPostContent($content);
+                        $post->setPostAuthor(utf8_encode($author));
+                        $post->setPostContent(utf8_encode($content));
                         $post->setPostImage($this->extractFirstImage($content));
 
-                        $em = $this->doctrine->getManager();
                         $em->persist($post);
-                        $em->flush();
                     }
                 }
+
+                //$this->purgeOldPosts($feed, $rss);
             }
         }
         catch(\Exception $e) {
             throw $e;
+        }
+        finally {
+            $em->flush();
         }
     }
 
@@ -93,7 +97,29 @@ class GetFeedPosts
         return false;
     }
 
-    private function purgeOldPosts() {
+    private function purgeOldPosts($feedId, $rss) {
+        $postResult = $this->doctrine
+            ->getRepository('AppBundle:Post')
+            ->findBy(array('feed' => $feedId, 'isRead' => false));
 
+        $maxPosts = 2;
+        $totalPosts = count($postResult);
+        $deletedPosts = 0;
+
+        if ($totalPosts > $maxPosts) {
+            $em = $this->doctrine->getEntityManager();
+
+            foreach ($postResult as $result) {
+                if ($totalPosts - $deletedPosts > $maxPosts) {
+                    $em->remove($result);
+                    $deletedPosts++;
+                }
+            }
+
+            $em->flush();
+        }
     }
+
+    // Todo: purge old posts
+    // Todo: update feed icon and title
 }
