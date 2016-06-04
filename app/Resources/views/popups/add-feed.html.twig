@@ -2,7 +2,7 @@
     {% trans %}add_new_feed{% endtrans %}
 </div>
 
-<div class="add-feed-form js-add-feed-form" data-validate-feed-url="{{ path('feedsValidateFeed') }}" data-feed-validated="false">
+<div class="add-feed-form js-add-feed-form" data-validate-feed-url="{{ path('feedsValidateFeed') }}">
     <div class="validating-feed js-validating-feed">{% trans %}validating_feed{% endtrans %}</div>
 
     {{ form_start(form) }}

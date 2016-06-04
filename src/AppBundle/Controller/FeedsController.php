@@ -56,8 +56,6 @@ class FeedsController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $url = $feed->getFeedUrl();
 
-            // Todo: get icon url
-
             $feed->setFeedName($this->getFeedName($url));
             $feed->setIconUrl($this->getFeedIcon($url));
 
@@ -80,6 +78,11 @@ class FeedsController extends Controller
      */
     public function isFeedValid(Request $request) {
         $url = $request->request->get('url');
+        $urlParts = parse_url($url);
+
+        if (!isset($urlParts['scheme'])) {
+            $url = 'http://' . $url;
+        }
 
         try {
             $content = file_get_contents($url);
@@ -109,6 +112,27 @@ class FeedsController extends Controller
     }
 
     private function getFeedIcon($url) {
+        $urlParts = parse_url($url);
+        $baseUrl = $urlParts['scheme'] . '://' . $urlParts['host'];
+
+        $doc = new \DOMDocument();
+
+        libxml_use_internal_errors(true);
+        $doc->strictErrorChecking = FALSE;
+
+        $doc->loadHTML(file_get_contents($baseUrl));
+        $xml = simplexml_import_dom($doc);
+
+        $array = $xml->xpath('//link[@rel="shortcut icon"]');
+
+        if (empty($array)) {
+            $array = $xml->xpath('//link[@rel="icon"]');
+        }
+
+        if (!empty($array)) {
+            return $array[0]['href'];
+        }
+
         return "";
     }
 }

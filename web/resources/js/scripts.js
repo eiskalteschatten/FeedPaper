@@ -43,9 +43,8 @@ var typingTimer;
 function validateFeed(field) {
     var url = $(field).val();
     var validateUrl = $('.js-add-feed-form').attr('data-validate-feed-url');
-    var hasBeenValidated = $('.js-add-feed-form').attr('data-feed-validated');
 
-    if (url != "" && hasBeenValidated === 'false') {
+    if (url != "") {
         $('.js-validating-feed').show();
 
         $.post(validateUrl, {'url': url}, function(data) {
