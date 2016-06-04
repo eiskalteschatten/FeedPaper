@@ -1,4 +1,7 @@
-add_feeds: Add Feeds
+add_new_feed: Add New Feed
+add_new_feed_name: Feed Name
+add_new_feed_url: Feed URL
+
 add_folder: Add Folder
 refresh: Refresh
 mark_all_as_read: Mark All as Read
@@ -7,7 +10,3 @@ all_unread: All Unread
 today: Today
 
 no_feeds_available: No feeds available
-
-add_new_feed: Add New Feed
-add_new_feed_name: Feed Name
-add_new_feed_url: Feed URL

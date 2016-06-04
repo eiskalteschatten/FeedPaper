@@ -1,0 +1,50 @@
+.popup {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    display: none;
+
+    .popup-background {
+        background: $bgGray;
+        opacity: 0.6;
+        height: 100%;
+        width: 100%;
+    }
+
+    .popup-box {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: #ffffff;
+        box-shadow: 0 0 15px $darkGray;
+
+        &.add-feed {
+            width: 500px;
+            height: 400px;
+        }
+
+        .popup-content {
+            padding: 20px;
+        }
+
+        .popup-title {
+            font-size: 2em;
+            margin-bottom: 35px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid $bgGray;
+            color: $bgGrayFontColor;
+        }
+
+        .popup-close {
+            float: right;
+            font-size: 1.5em;
+            color: $bgGrayFontColor;
+            padding: 20px;
+            cursor: pointer;
+        }
+    }
+}

@@ -2,6 +2,7 @@ $screen-sm-min: 767px;
 $screen-md-min: 992px;
 $screen-lg-min: 1200px;
 
+$darkGray: #b4b4b4;
 $bgGray: #f4f4f4;
 $bgGrayFontColor: #505050;
 
@@ -54,3 +55,4 @@ button {
 
 @import "sidebar";
 @import "body";
+@import "popup";

@@ -10,12 +10,12 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 use AppBundle\Entity\Feed;
 
-class AsyncController extends Controller
+class PopupController extends Controller
 {
     /**
-     * @Route("/{_locale}/async/add-feeds", name="asyncAddFeeds")
+     * @Route("/{_locale}/popup/add-feed", name="popupAddFeed")
      */
-    public function addFeedsAction(Request $request)
+    public function addFeedAction(Request $request)
     {
         $date = new \DateTime("now");
 
@@ -29,7 +29,7 @@ class AsyncController extends Controller
             ->add('save', SubmitType::class, array('label' => $this->get('translator')->trans('add_new_feed')))
             ->getForm();
 
-        return $this->render('async/add-feed.html.twig', array(
+        return $this->render('popups/add-feed.html.twig', array(
             'form' => $form->createView()
         ));
     }
