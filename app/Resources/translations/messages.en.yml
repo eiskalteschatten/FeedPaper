@@ -3,6 +3,8 @@ add_new_feed_name: Feed Name
 add_new_feed_url: Feed URL
 
 add_folder: Add Folder
+add_folder_name: Folder Name
+
 refresh: Refresh
 mark_all_as_read: Mark All as Read
 

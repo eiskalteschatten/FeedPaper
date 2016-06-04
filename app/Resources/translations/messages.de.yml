@@ -2,7 +2,9 @@ add_new_feed: Neuen Feed hinzufügen
 add_new_feed_name: Feed-Name
 add_new_feed_url: Feed-URL
 
-add_folder: Ornder hinzufügen
+add_folder: Ordner hinzufügen
+add_folder_name: Ordner-Name
+
 refresh: Neuladen
 mark_all_as_read: Alle als gelesen markieren
 
