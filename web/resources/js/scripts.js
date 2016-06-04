@@ -74,7 +74,8 @@ function refreshAllFeeds() {
     buttonIcon.addClass('spin');
 
     $.post(url, function(data) {
-        buttonIcon.removeClass('spin');
         location.reload();
+    }).always(function() {
+        buttonIcon.removeClass('spin');
     });
 }
