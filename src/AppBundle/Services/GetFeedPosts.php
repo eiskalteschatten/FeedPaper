@@ -29,8 +29,11 @@ class GetFeedPosts
                 $fileContents = file_get_contents($url);
                 $rss = new \SimpleXmlElement($fileContents);
 
+                $titlesInFeed = array();
+
                 foreach($rss->channel->item as $entry) {
                     $title = substr($entry->title, 0, 255);
+                    $titlesInFeed[] = $title;
                     $url = $entry->link;
 
                     $postResult = $this->doctrine
@@ -60,7 +63,7 @@ class GetFeedPosts
                     }
                 }
 
-                //$this->purgeOldPosts($feed, $rss);
+                $this->purgeOldPosts($feed, $rss, $titlesInFeed);
             }
         }
         catch(\Exception $e) {
@@ -97,29 +100,21 @@ class GetFeedPosts
         return false;
     }
 
-    private function purgeOldPosts($feedId, $rss) {
+    private function purgeOldPosts($feedId, $rss, $titlesInFeed) {
         $postResult = $this->doctrine
             ->getRepository('AppBundle:Post')
             ->findBy(array('feed' => $feedId, 'isRead' => false));
 
-        $maxPosts = 2;
-        $totalPosts = count($postResult);
-        $deletedPosts = 0;
+        $em = $this->doctrine->getEntityManager();
 
-        if ($totalPosts > $maxPosts) {
-            $em = $this->doctrine->getEntityManager();
-
-            foreach ($postResult as $result) {
-                if ($totalPosts - $deletedPosts > $maxPosts) {
-                    $em->remove($result);
-                    $deletedPosts++;
-                }
+        foreach ($postResult as $result) {
+            if (!in_array($result->getPostTitle(), $titlesInFeed)) {
+                $em->remove($result);
             }
-
-            $em->flush();
         }
+
+        $em->flush();
     }
 
-    // Todo: purge old posts
     // Todo: update feed icon and title
 }
