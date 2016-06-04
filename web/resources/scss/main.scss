@@ -44,15 +44,6 @@ button {
     }
 }
 
-.ajax-loader {
-    position: absolute;
-    height: 100%;
-    width: 100%;
-    background: #ffffff url('../img/loader.svg') no-repeat center center;
-    z-index: 10;
-    display: none;
-}
-
 @import "sidebar";
 @import "body";
 @import "popup";

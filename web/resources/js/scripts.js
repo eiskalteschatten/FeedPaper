@@ -1,14 +1,13 @@
 function openPopup(url, popupClass) {
-    showAjaxLoader();
+    $('.js-popup-box').addClass(popupClass);
+    $('.js-popup-box').attr('data-popup-class', popupClass);
+    $('.js-popup').show();
+    $('.js-popup').stop().animate({'opacity': 1}, 200);
 
     $.get(url, function(data) {
         $('.js-popup-content').html(data);
-        $('.js-popup-box').addClass(popupClass);
-        $('.js-popup-box').attr('data-popup-class', popupClass);
-        $('.js-popup').show();
-        $('.js-popup').stop().animate({'opacity': 1}, 200);
 
-        hideAjaxLoader();
+        $('.js-popup-box').addClass('done-loading');
     });
 }
 
@@ -19,13 +18,8 @@ function closePopup() {
 
         var popupClass = $('.js-popup-box').attr('data-popup-class');
         $('.js-popup-box').removeClass(popupClass);
+        $('.js-popup-box').attr('data-popup-class', '');
+
+        $('.js-popup-box').removeClass('done-loading');
     });
-}
-
-function showAjaxLoader() {
-    $('.js-ajax-loader').show();
-}
-
-function hideAjaxLoader() {
-    $('.js-ajax-loader').hide();
 }
