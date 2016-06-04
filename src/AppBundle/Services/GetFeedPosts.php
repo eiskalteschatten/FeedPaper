@@ -33,7 +33,6 @@ class GetFeedPosts
 
                 foreach($rss->channel->item as $entry) {
                     $title = substr($entry->title, 0, 255);
-                    $titlesInFeed[] = $title;
                     $url = $entry->link;
 
                     $postResult = $this->doctrine
@@ -48,18 +47,24 @@ class GetFeedPosts
                             $content = $entry->description;
                         }
 
+                        $uniCodeRegEx = '/[^\x20-\x7f]/';
+                        $title = preg_replace($uniCodeRegEx, '', $title);
+                        $content = preg_replace($uniCodeRegEx, '', $content);
+
                         $post = new Post();
                         $post->setDateFetched($date);
-                        $post->setPostTitle(utf8_encode($title));
-                        $post->setPostUrl(utf8_encode($url));
+                        $post->setPostTitle($title);
+                        $post->setPostUrl($url);
                         $post->setPostDate(new \DateTime($entry->pubDate));
                         $post->setIsRead(false);
                         $post->setFeed($feed);
-                        $post->setPostAuthor(utf8_encode($author));
-                        $post->setPostContent(utf8_encode($content));
+                        $post->setPostAuthor($author);
+                        $post->setPostContent($content);
                         $post->setPostImage($this->extractFirstImage($content));
 
                         $em->persist($post);
+
+                        $titlesInFeed[] = $title;
                     }
                 }
 
