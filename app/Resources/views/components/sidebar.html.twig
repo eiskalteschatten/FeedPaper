@@ -16,6 +16,16 @@
     <div class="section">
         {% for folder in folders %}
             <a href="#" class="full-link" data-id="{{ folder.id }}"><span class="glyphicon glyphicon-folder-close"></span>{{ folder.name }}</a>
+            {% for feed in folder.feeds %}
+                <a href="#" class="full-link indented">
+                    {% if feed.icon is not empty %}
+                        <img src="{{ feed.icon }}" class="feed-favicon">
+                    {% else %}
+                        <span class="glyphicon glyphicon-globe"></span>
+                    {% endif %}
+                    {{ feed.name }}
+                </a>
+            {% endfor %}
         {% endfor %}
     </div>
 </div>

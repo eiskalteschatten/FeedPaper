@@ -39,7 +39,17 @@
             font-size: 0.9em;
         }
 
+        &.indented {
+            padding-left: 30px;
+        }
+
         .glyphicon {
+            margin-right: 10px;
+        }
+
+        .feed-favicon {
+            width: 16px;
+            height: 16px;
             margin-right: 10px;
         }
     }

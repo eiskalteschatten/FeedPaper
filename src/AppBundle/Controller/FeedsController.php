@@ -112,25 +112,30 @@ class FeedsController extends Controller
     }
 
     private function getFeedIcon($url) {
-        $urlParts = parse_url($url);
-        $baseUrl = $urlParts['scheme'] . '://' . $urlParts['host'];
+        try {
+            $urlParts = parse_url($url);
+            $baseUrl = $urlParts['scheme'] . '://' . $urlParts['host'];
 
-        $doc = new \DOMDocument();
+            $doc = new \DOMDocument();
 
-        libxml_use_internal_errors(true);
-        $doc->strictErrorChecking = FALSE;
+            libxml_use_internal_errors(true);
+            $doc->strictErrorChecking = FALSE;
 
-        $doc->loadHTML(file_get_contents($baseUrl));
-        $xml = simplexml_import_dom($doc);
+            $doc->loadHTML(file_get_contents($baseUrl));
+            $xml = simplexml_import_dom($doc);
 
-        $array = $xml->xpath('//link[@rel="shortcut icon"]');
+            $array = $xml->xpath('//link[@rel="shortcut icon"]');
 
-        if (empty($array)) {
-            $array = $xml->xpath('//link[@rel="icon"]');
+            if (empty($array)) {
+                $array = $xml->xpath('//link[@rel="icon"]');
+            }
+
+            if (!empty($array)) {
+                return $array[0]['href'];
+            }
         }
-
-        if (!empty($array)) {
-            return $array[0]['href'];
+        catch(\Exception $e) {
+            //throw $e;
         }
 
         return "";
