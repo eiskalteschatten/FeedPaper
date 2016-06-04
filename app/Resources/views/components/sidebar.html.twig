@@ -11,8 +11,11 @@
     <div class="section">
         <a href="#" class="full-link"><span class="glyphicon glyphicon-list-alt"></span>{% trans %}all_unread{% endtrans %}</a>
         <a href="#" class="full-link active"><span class="glyphicon glyphicon-calendar"></span>{% trans %}today{% endtrans %}</a>
+        <a href="#" class="full-link"><span class="glyphicon glyphicon-list"></span>{% trans %}all_feeds{% endtrans %}</a>
     </div>
     <div class="section">
-        <a href="#" class="full-link"><span class="glyphicon glyphicon-list"></span>{% trans %}all_feeds{% endtrans %}</a>
+        {% for folder in folders %}
+            <a href="#" class="full-link" data-id="{{ folder.id }}"><span class="glyphicon glyphicon-folder-close"></span>{{ folder.name }}</a>
+        {% endfor %}
     </div>
 </div>

@@ -6,6 +6,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
+use AppBundle\Entity\Folder;
+
 class DefaultController extends Controller
 {
     /**
@@ -13,21 +15,19 @@ class DefaultController extends Controller
      */
     public function indexAction(Request $request)
     {
-        $currentUrl = $request->getUri();
+        $queryResult = $this->getDoctrine()
+            ->getRepository('AppBundle:Folder')
+            ->findBy(array(), array('folderName' => 'ASC'));
 
-        if (!strstr($currentUrl, "/en/") && !strstr($currentUrl, "/de/")) {
-            $prefLang = $request->getPreferredLanguage(array('de', 'en'));
+        $folders = array();
 
-            if ($prefLang == "de") {
-                $urlLang = "de";
-            }
-            else {
-                $urlLang = "en";
-            }
-
-            return $this->redirect($this->generateUrl('home', array('_locale' => $urlLang)));
+        foreach ($queryResult as $result) {
+            $folders[] = array(
+                'id' => $result->getId(),
+                'name' => $result->getFolderName()
+            );
         }
 
-        return $this->render('default/index.html.twig');
+        return $this->render('default/index.html.twig', array('folders' => $folders));
     }
 }
