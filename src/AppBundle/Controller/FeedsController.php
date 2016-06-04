@@ -56,7 +56,6 @@ class FeedsController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $url = $feed->getFeedUrl();
 
-            // Todo: parse feed name and set it
             // Todo: get icon url
 
             $feed->setFeedName($this->getFeedName($url));
@@ -98,7 +97,15 @@ class FeedsController extends Controller
     }
 
     private function getFeedName($url) {
-        return "";
+        try {
+            $content = file_get_contents($url);
+            $rss = new \SimpleXmlElement($content);
+
+            return $rss->channel->title;
+        }
+        catch(\Exception $e) {
+            throw $e;
+        }
     }
 
     private function getFeedIcon($url) {
