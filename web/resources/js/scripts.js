@@ -34,3 +34,35 @@ function closePopup() {
         $('.js-popup-box').removeClass('done-loading');
     });
 }
+
+
+// Feed validation
+
+var typingTimer;
+
+function validateFeed(field) {
+    var url = $(field).val();
+    var validateUrl = $('.js-add-feed-form').attr('data-validate-feed-url');
+    var hasBeenValidated = $('.js-add-feed-form').attr('data-feed-validated');
+
+    if (url != "" && hasBeenValidated === 'false') {
+        $('.js-validating-feed').show();
+
+        $.post(validateUrl, {'url': url}, function(data) {
+            $('.js-validating-feed').hide();
+
+            if (data === 'true') {
+                $('#form_save').prop('disabled', false);
+                $('.js-add-feed-form').attr('data-feed-validated', 'true');
+            }
+        });
+    }
+}
+
+function validateFeedTimer(field) {
+    clearTimeout(typingTimer);
+
+    typingTimer = setTimeout(function() {
+        validateFeed(field);
+    }, 700);
+}

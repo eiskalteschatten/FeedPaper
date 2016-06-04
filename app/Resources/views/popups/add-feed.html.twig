@@ -2,9 +2,19 @@
     {% trans %}add_new_feed{% endtrans %}
 </div>
 
-<div class="add-feed-form js-add-feed-form">
+<div class="add-feed-form js-add-feed-form" data-validate-feed-url="{{ path('feedsValidateFeed') }}" data-feed-validated="false">
+    <div class="validating-feed js-validating-feed">{% trans %}validating_feed{% endtrans %}</div>
+
     {{ form_start(form) }}
-        {{ form_errors(form) }}
-        {{ form_widget(form) }}
+        <div>{{ form_errors(form) }}</div>
+        <div>
+            {{ form_label(form.feed_url) }}
+            {{ form_widget(form.feed_url, {'attr': {'onblur': 'validateFeed(this)', 'onkeyup': 'validateFeedTimer(this)'} }) }}
+        </div>
+        <div>
+            {{ form_label(form.folder) }}
+            {{ form_widget(form.folder) }}
+        </div>
+        <div>{{ form_widget(form.save) }}</div>
     {{ form_end(form) }}
 </div>
