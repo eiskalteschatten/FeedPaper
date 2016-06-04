@@ -107,7 +107,7 @@ class FeedsController extends Controller
             return $rss->channel->title;
         }
         catch(\Exception $e) {
-            throw $e;
+            return $url;
         }
     }
 
@@ -131,7 +131,14 @@ class FeedsController extends Controller
             }
 
             if (!empty($array)) {
-                return $array[0]['href'];
+                $icon = $array[0]['href'];
+                $iconParts = parse_url($icon);
+
+                if (!isset($iconParts['scheme'])) {
+                    $icon = $baseUrl . '/' . $icon;
+                }
+
+                return $icon;
             }
         }
         catch(\Exception $e) {
