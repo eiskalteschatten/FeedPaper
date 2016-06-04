@@ -4,6 +4,10 @@ parameters:
 #    parameter_name: value
 
 services:
+    app.services.getFeedPosts:
+        class: AppBundle\Services\GetFeedPosts
+        arguments: [@doctrine]
+
 #    service_name:
 #        class: AppBundle\Directory\ClassName
 #        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]

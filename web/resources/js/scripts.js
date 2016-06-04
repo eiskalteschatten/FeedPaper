@@ -65,3 +65,15 @@ function validateFeedTimer(field) {
         validateFeed(field);
     }, 700);
 }
+
+// Refresh all feeds
+
+function refreshAllFeeds() {
+    url = $('#refreshButton').attr('data-refresh-url');
+
+    $.post(url, function(data) {
+        location.reload();
+    }).fail(function(data) {
+        console.log(data.responseText);
+    });
+}
