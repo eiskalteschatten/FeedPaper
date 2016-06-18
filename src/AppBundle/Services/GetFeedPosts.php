@@ -108,7 +108,7 @@ class GetFeedPosts
     private function purgeOldPosts($feedId, $rss, $titlesInFeed) {
         $postResult = $this->doctrine
             ->getRepository('AppBundle:Post')
-            ->findBy(array('feed' => $feedId, 'isRead' => false));
+            ->findBy(array('feed' => $feedId, 'isRead' => true));
 
         $em = $this->doctrine->getEntityManager();
 
