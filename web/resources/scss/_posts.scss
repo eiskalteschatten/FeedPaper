@@ -16,8 +16,7 @@
         color: $bgGrayFontColor;
 
         &.selected {
-            color: #ffffff;
-            background: $darkGray;
+            background: $bgHighlightColor;
         }
 
         .post-title {
