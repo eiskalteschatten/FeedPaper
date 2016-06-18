@@ -54,6 +54,9 @@ class DefaultController extends Controller
             );
         }
 
-        return $this->render('default/index.html.twig', array('folders' => $folders));
+        $getFeedPosts = $this->get('app.services.getFeedPosts');
+        $posts = $getFeedPosts->getAllPosts();
+
+        return $this->render('default/index.html.twig', array('folders' => $folders, 'posts' => $posts));
     }
 }

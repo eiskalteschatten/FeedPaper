@@ -84,6 +84,13 @@ class Post
      */
     private $postContent;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="post_preview", type="text", nullable=true)
+     */
+    private $postPreview;
+
 
     /**
      * Get id
@@ -300,5 +307,28 @@ class Post
     public function getPostContent()
     {
         return $this->postContent;
+    }
+
+    /**
+     * Set postPreview
+     *
+     * @param string $postPreview
+     * @return Test
+     */
+    public function setPostPreview($postPreview)
+    {
+        $this->postPreview = $postPreview;
+
+        return $this;
+    }
+
+    /**
+     * Get postPreview
+     *
+     * @return string
+     */
+    public function getPostPreview()
+    {
+        return $this->postPreview;
     }
 }

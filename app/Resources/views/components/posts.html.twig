@@ -1,0 +1,14 @@
+<div class="posts js-posts">
+    {% for post in posts %}
+        <div class="post js-post" data-id="{{ post.id }}" data-feed="{{ post.feed }}" data-post-date="{{ post.postDate | date('c') }}">
+            {% if post.postImage is not empty %}
+                <div class="post-image" style="background-image: url('{{ post.postImage }}')"></div>
+            {% endif %}
+            <div class="post-title">{{ post.postTitle }}</div>
+            <div class="post-preview">{{ post.postPreview }}</div>
+            <div class="post-date">
+                {{ post.postDate | localizeddate('long', 'short', app.request.locale) }}
+            </div>
+        </div>
+    {% endfor %}
+</div>

@@ -16,9 +16,9 @@ class PostsController extends Controller
      */
     public function refreshPosts(Request $request)
     {
-        $getFeedPosts = $this->get('app.services.getFeedPosts');
+        $fetchFeedPosts = $this->get('app.services.fetchFeedPosts');
 
-        $getFeedPosts->getAllPosts();
+        $fetchFeedPosts->fetchAllPosts();
 
         return new Response("ok");
     }

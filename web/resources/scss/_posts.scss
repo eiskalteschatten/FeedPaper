@@ -1,0 +1,50 @@
+.posts {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 375px;
+    height: 100%;
+    overflow: scroll;
+    border-right: 1px solid $bgGray;
+    font-size: 0.9em;
+
+    .post {
+        height: 100px;
+        border-bottom: 1px solid $bgGray;
+        cursor: default;
+        overflow: hidden;
+        color: $bgGrayFontColor;
+
+        &.selected {
+            color: #ffffff;
+            background: $darkGray;
+        }
+
+        .post-title {
+            padding: 15px 15px 3px 15px;
+            font-weight: bold;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .post-image {
+            height: 100px;
+            width: 100px;
+            float: right;
+            background-size: cover;
+        }
+
+        .post-preview {
+            padding: 3px 15px;
+            overflow: hidden;
+            height: 40px;
+        }
+
+        .post-date {
+            padding: 3px 15px;
+            font-size: 0.8em;
+            opacity: 0.8;
+        }
+    }
+}

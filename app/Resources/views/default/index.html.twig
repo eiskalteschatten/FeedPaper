@@ -1,13 +1,12 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    {# If there are no feeds, show this: #}
-    <div class="no-feeds">
-        <div class="text">{% trans %}no_feeds_available{% endtrans %}</div>
-        <a href="#" onclick="openPopup('{{ path('feedsAddFeedForm') }}', 'add-feed')">{% trans %}add_new_feed{% endtrans %}</a>
-    </div>
-
-    {# else #}
-
-
+    {% if posts is empty %}
+        <div class="no-feeds">
+            <div class="text">{% trans %}no_posts_available{% endtrans %}</div>
+            <a href="#" onclick="openPopup('{{ path('feedsAddFeedForm') }}', 'add-feed')">{% trans %}add_new_feed{% endtrans %}</a>
+        </div>
+    {% else %}
+        {{ include('components/posts.html.twig') }}
+    {% endif %}
 {% endblock %}

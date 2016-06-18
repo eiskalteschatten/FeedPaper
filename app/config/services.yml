@@ -7,6 +7,14 @@ services:
     app.services.getFeedPosts:
         class: AppBundle\Services\GetFeedPosts
         arguments: [@doctrine]
+    app.services.fetchFeedPosts:
+        class: AppBundle\Services\FetchFeedPosts
+        arguments: [@doctrine]
+
+    twig.extension.intl:
+            class: Twig_Extensions_Extension_Intl
+            tags:
+                - { name: twig.extension }
 
 #    service_name:
 #        class: AppBundle\Directory\ClassName

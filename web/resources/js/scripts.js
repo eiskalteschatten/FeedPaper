@@ -4,6 +4,11 @@ window.onload = function() {
             closePopup();
         }
     });
+
+    $('.js-post').click(function() {
+        $('.js-post').removeClass('selected');
+        selectPost($(this));
+    });
 }
 
 function openPopup(url, popupClass) {
@@ -78,4 +83,10 @@ function refreshAllFeeds() {
     }).always(function() {
         buttonIcon.removeClass('spin');
     });
+}
+
+// Posts
+
+function selectPost(post) {
+    post.addClass('selected');
 }
