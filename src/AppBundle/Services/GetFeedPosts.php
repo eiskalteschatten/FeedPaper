@@ -17,8 +17,9 @@ class GetFeedPosts
         $em = $this->doctrine->getManager();
 
         $queryResult = $em->createQueryBuilder()
-            ->select('p.id, p.postImage, p.postTitle, p.postPreview, p.feed, p.postDate, p.isRead')
+            ->select('p.id, p.postImage, p.postTitle, p.postPreview, p.feed, p.postDate, p.isRead, f.feedName')
             ->from('AppBundle:Post', 'p')
+            ->join('AppBundle:Feed', 'f', \Doctrine\ORM\Query\Expr\Join::WITH, 'f.id = p.feed')
             ->orderBy('p.postDate', 'DESC')
             ->getQuery()
             ->getResult();
@@ -34,13 +35,18 @@ class GetFeedPosts
         $formatter = new \IntlDateFormatter($locale, \IntlDateFormatter::LONG, \IntlDateFormatter::LONG);
         $date = $formatter->format($queryResult->getPostDate());
 
+        $feedResult = $this->doctrine
+            ->getRepository('AppBundle:Feed')
+            ->findOneBy(array('id' => $queryResult->getFeed()));
+
         $result = array(
             'id' => $queryResult->getId(),
             'title' => $queryResult->getPostTitle(),
             'url' => $queryResult->getPostUrl(),
             'date' => $date,
             'author' => $queryResult->getPostAuthor(),
-            'content' => $queryResult->getPostContent()
+            'content' => $queryResult->getPostContent(),
+            'feed' => $feedResult->getFeedName()
         );
 
         return $result;

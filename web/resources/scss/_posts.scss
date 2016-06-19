@@ -1,3 +1,5 @@
+$postHeight: 120px;
+
 .posts {
     position: absolute;
     left: 0;
@@ -9,7 +11,7 @@
     font-size: 0.9em;
 
     .post {
-        height: 100px;
+        height: $postHeight;
         border-bottom: 1px solid $bgGray;
         cursor: pointer;
         overflow: hidden;
@@ -32,8 +34,8 @@
         }
 
         .post-image {
-            height: 100px;
-            width: 100px;
+            height: $postHeight;
+            width: $postHeight;
             float: right;
             background-size: cover;
         }
@@ -42,6 +44,11 @@
             padding: 3px 15px;
             overflow: hidden;
             height: 40px;
+        }
+
+        .post-feed {
+            padding: 3px 15px;
+            font-size: 0.8em;
         }
 
         .post-date {
@@ -91,6 +98,11 @@
             &.shown {
                 display: inline-block;
             }
+        }
+
+        .post-feed {
+            margin-right: 15px;
+            display: inline-block;
         }
 
         .post-date {

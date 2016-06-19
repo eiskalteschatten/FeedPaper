@@ -11,6 +11,7 @@
             {% endif %}
             <div class="post-title">{{ post.postTitle }}</div>
             <div class="post-preview">{{ post.postPreview }}</div>
+            <div class="post-feed">{{ post.feedName }}</div>
             <div class="post-date">
                 {{ post.postDate | localizeddate('long', 'short', app.request.locale) }}
             </div>

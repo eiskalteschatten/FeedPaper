@@ -87,7 +87,10 @@ function refreshAllFeeds() {
 
 // Posts
 
+var markAsReadTimer;
+
 function selectPost(post) {
+    clearTimeout(markAsReadTimer);
     post.addClass('selected');
 
     var url = $('.js-posts').attr('data-single-post-url');
@@ -103,6 +106,7 @@ function selectPost(post) {
         $('.js-post-date').text(data.date);
         $('.js-post-body').html(data.content);
         $('.js-post-link').attr('href', data.url);
+        $('.js-post-feed').text(data.feed);
 
         if (data.author != '') {
             $('.js-post-author').text(data.author);
@@ -117,7 +121,7 @@ function selectPost(post) {
         $('.js-post-content-column').show();
 
         if (!post.hasClass('read')) {
-            setTimeout(function() {
+            markAsReadTimer = setTimeout(function() {
                 markPostAsRead(id, post);
             }, 1000);
         }
