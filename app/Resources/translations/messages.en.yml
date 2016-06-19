@@ -15,5 +15,7 @@ today: Today
 all_feeds: All Feeds
 
 no_posts_available: No posts available
+no_post_selected: No post selected
+visit_website: Visit Website
 
 an_error_occurred: An error occurred. Please try again.

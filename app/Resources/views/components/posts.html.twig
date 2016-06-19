@@ -1,6 +1,11 @@
-<div class="posts js-posts">
+<div class="posts js-posts" data-single-post-url="{{ path('postsGetSingle') }}"  data-mark-single-read-url="{{ path('postsMarkSingleAsRead') }}">
     {% for post in posts %}
-        <div class="post js-post" data-id="{{ post.id }}" data-feed="{{ post.feed }}" data-post-date="{{ post.postDate | date('c') }}">
+        {% set isRead = '' %}
+        {% if post.isRead == true %}
+            {% set isRead = ' read' %}
+        {% endif %}
+
+        <div class="post js-post{{ isRead }}" data-id="{{ post.id }}" data-feed="{{ post.feed }}" data-post-date="{{ post.postDate | date('c') }}">
             {% if post.postImage is not empty %}
                 <div class="post-image" style="background-image: url('{{ post.postImage }}')"></div>
             {% endif %}

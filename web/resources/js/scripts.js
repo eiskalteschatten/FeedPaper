@@ -89,4 +89,49 @@ function refreshAllFeeds() {
 
 function selectPost(post) {
     post.addClass('selected');
+
+    var url = $('.js-posts').attr('data-single-post-url');
+    var id = post.attr('data-id');
+
+    var vars = {
+        'id': id
+    };
+
+    $.post(url, vars, function(data) {
+        $('.js-post-title').text(data.title);
+        $('.js-post-title').attr('href', data.url);
+        $('.js-post-date').text(data.date);
+        $('.js-post-body').html(data.content);
+        $('.js-post-link').attr('href', data.url);
+
+        if (data.author != '') {
+            $('.js-post-author').text(data.author);
+            $('.js-post-author').addClass('shown');
+        }
+        else {
+            $('.js-post-author').removeClass('shown');
+            $('.js-post-author').text('');
+        }
+
+        $('.js-post-content-placeholder').hide();
+        $('.js-post-content-column').show();
+
+        if (!post.hasClass('read')) {
+            setTimeout(function() {
+                markPostAsRead(id, post);
+            }, 1000);
+        }
+    });
+}
+
+function markPostAsRead(id, post) {
+    var url = $('.js-posts').attr('data-mark-single-read-url');
+
+    var vars = {
+        'id': id
+    };
+
+    $.post(url, vars, function() {
+        post.addClass('read');
+    });
 }
