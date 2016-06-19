@@ -16,9 +16,12 @@ class GetFeedPosts
     public function getAllPosts() {
         $em = $this->doctrine->getManager();
 
-        $queryResult = $this->doctrine
-            ->getRepository('AppBundle:Post')
-            ->findBy(array(), array('postDate' => 'DESC'));
+        $queryResult = $em->createQueryBuilder()
+                ->select('p.id, p.postImage, p.postTitle, p.postPreview, p.feed, p.postDate')
+                ->from('AppBundle:Post', 'p')
+                ->orderBy('p.postDate', 'DESC')
+                ->getQuery()
+                ->getResult();
 
         return $queryResult;
     }
