@@ -9,6 +9,8 @@ window.onload = function() {
         $('.js-post').removeClass('selected');
         selectPost($(this));
     });
+
+    $('[data-toggle="tooltip"]').tooltip();
 }
 
 function openPopup(url, popupClass) {
