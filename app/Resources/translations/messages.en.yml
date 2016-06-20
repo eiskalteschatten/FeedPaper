@@ -8,7 +8,7 @@ add_folder: Add Folder
 add_folder_name: Folder Name
 
 refresh: Refresh
-mark_all_as_read: Mark All as Read
+mark_all_as_read: Mark all as read
 
 all_unread: All Unread
 today: Today
@@ -17,5 +17,7 @@ all_feeds: All Feeds
 no_posts_available: No posts available
 no_post_selected: No post selected
 visit_website: Visit Website
+mark_as_unread: Mark as unread
+mark_as_read: Mark as read
 
 an_error_occurred: An error occurred. Please try again.

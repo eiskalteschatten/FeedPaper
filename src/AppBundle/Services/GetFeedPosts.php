@@ -60,4 +60,13 @@ class GetFeedPosts
 
         $em->flush();
     }
+
+    public function markSinglePostAsUnread($id) {
+        $em = $this->doctrine->getManager();
+        $entity = $em->getRepository('AppBundle:Post')->find($id);
+
+        $entity->setIsRead(false);
+
+        $em->flush();
+    }
 }

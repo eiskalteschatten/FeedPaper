@@ -1,4 +1,4 @@
-<div class="posts js-posts" data-single-post-url="{{ path('postsGetSingle') }}"  data-mark-single-read-url="{{ path('postsMarkSingleAsRead') }}">
+<div class="posts js-posts" data-single-post-url="{{ path('postsGetSingle') }}"  data-mark-single-read-url="{{ path('postsMarkSingleAsRead') }}" data-mark-single-unread-url="{{ path('postsMarkSingleAsUnread') }}">
     {% for post in posts %}
         {% set isRead = '' %}
         {% if post.isRead == true %}

@@ -121,14 +121,24 @@ function selectPost(post) {
         $('.js-post-content-column').show();
 
         if (!post.hasClass('read')) {
+            $('.js-mark-as-read').addClass('show');
+            $('.js-mark-as-unread').removeClass('show');
+
             markAsReadTimer = setTimeout(function() {
-                markPostAsRead(id, post);
+                markPostAsRead();
             }, 1000);
+        }
+        else {
+            $('.js-mark-as-unread').addClass('show');
+            $('.js-mark-as-read').removeClass('show');
         }
     });
 }
 
-function markPostAsRead(id, post) {
+function markPostAsRead() {
+    var post = $('.js-post.selected');
+    var id = post.attr('data-id');
+
     var url = $('.js-posts').attr('data-mark-single-read-url');
 
     var vars = {
@@ -137,5 +147,24 @@ function markPostAsRead(id, post) {
 
     $.post(url, vars, function() {
         post.addClass('read');
+        $('.js-mark-as-unread').addClass('show');
+        $('.js-mark-as-read').removeClass('show');
+    });
+}
+
+function markPostAsUnread() {
+    var post = $('.js-post.selected');
+    var id = post.attr('data-id');
+
+    var url = $('.js-posts').attr('data-mark-single-unread-url');
+
+    var vars = {
+        'id': id
+    };
+
+    $.post(url, vars, function() {
+        post.removeClass('read');
+        $('.js-mark-as-read').addClass('show');
+        $('.js-mark-as-unread').removeClass('show');
     });
 }

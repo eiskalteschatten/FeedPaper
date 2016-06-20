@@ -43,7 +43,20 @@ class PostsController extends Controller
         $id = $request->request->get('id');
 
         $getFeedPosts = $this->get('app.services.getFeedPosts');
-        $content = $getFeedPosts->markSinglePostAsRead($id);
+        $getFeedPosts->markSinglePostAsRead($id);
+
+        return new Response("ok");
+    }
+
+    /**
+     * @Route("/{_locale}/posts/markSingleAsUnread", name="postsMarkSingleAsUnread")
+     * @Method("POST")
+     */
+    public function markSinglePostAsUnread(Request $request) {
+        $id = $request->request->get('id');
+
+        $getFeedPosts = $this->get('app.services.getFeedPosts');
+        $getFeedPosts->markSinglePostAsUnread($id);
 
         return new Response("ok");
     }

@@ -10,8 +10,10 @@
             <div class="post-date js-post-date"></div>
         </div>
         <div class="post-body js-post-body"></div>
+        <a class="post-link js-post-link btn btn-default" target="_blank">{% trans %}visit_website{% endtrans %}</a>
         <div class="post-footer">
-            <a class="post-link js-post-link btn btn-default" target="_blank">{% trans %}visit_website{% endtrans %}</a>
+            <a href="#" onclick="markPostAsUnread()" class="mark-as-unread js-mark-as-unread">{% trans %}mark_as_unread{% endtrans %}</a>
+            <a href="#" onclick="markPostAsRead()" class="mark-as-read js-mark-as-read">{% trans %}mark_as_read{% endtrans %}</a>
         </div>
     </div>
 </div>
