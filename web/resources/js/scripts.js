@@ -170,3 +170,11 @@ function markPostAsUnread() {
         $('.js-mark-as-unread').removeClass('show');
     });
 }
+
+function markAllAsRead(url) {
+    $.post(url, function() {
+        $('.js-post').addClass('read');
+        $('.js-mark-as-unread').addClass('show');
+        $('.js-mark-as-read').removeClass('show');
+    });
+}

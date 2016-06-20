@@ -69,4 +69,15 @@ class GetFeedPosts
 
         $em->flush();
     }
+
+    public function markAllAsRead() {
+        $em = $this->doctrine->getManager();
+        $entities = $em->getRepository('AppBundle:Post')->findAll();
+
+        foreach($entities as $entity) {
+            $entity->setIsRead(true);
+        }
+
+        $em->flush();
+    }
 }

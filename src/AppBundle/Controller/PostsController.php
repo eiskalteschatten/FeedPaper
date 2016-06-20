@@ -60,4 +60,15 @@ class PostsController extends Controller
 
         return new Response("ok");
     }
+
+    /**
+     * @Route("/{_locale}/posts/markAllAsRead", name="postsMarkAllAsRead")
+     * @Method("POST")
+     */
+    public function markAllAsRead(Request $request) {
+        $getFeedPosts = $this->get('app.services.getFeedPosts');
+        $getFeedPosts->markAllAsRead();
+
+        return new Response("ok");
+    }
 }
