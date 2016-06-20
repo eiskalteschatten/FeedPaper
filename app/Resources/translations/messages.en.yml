@@ -13,6 +13,7 @@ mark_all_as_read: Mark all as read
 all_unread: All Unread
 today: Today
 all_feeds: All Feeds
+settings: Settings
 
 no_posts_available: No posts available
 no_post_selected: No post selected

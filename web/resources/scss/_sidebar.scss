@@ -64,7 +64,17 @@
     .toolbar {
         text-align: center;
 
-        a {
+        &.bottom {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: $sidebarWidth;
+            text-align: left;
+            padding: 8px 0;
+            background: $bgGray;
+        }
+
+        .toolbar-icon {
             width: 35px;
             height: 35px;
             padding: 10px;
@@ -83,6 +93,10 @@
                 background: #b4b4b4;
             }
         }
+    }
+
+    .placeholder {
+        height: 20px;
     }
 
     #refreshButtonIcon {
