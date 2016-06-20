@@ -20,7 +20,8 @@ class GetFeedPosts
             ->select('p.id, p.postImage, p.postTitle, p.postPreview, p.feed, f.folder, p.postDate, p.isRead, f.feedName')
             ->from('AppBundle:Post', 'p')
             ->join('AppBundle:Feed', 'f', \Doctrine\ORM\Query\Expr\Join::WITH, 'f.id = p.feed')
-            ->orderBy('p.postDate', 'DESC')
+            ->addOrderBy('p.isRead', 'ASC')
+            ->addOrderBy('p.postDate', 'DESC')
             ->getQuery()
             ->getResult();
 
