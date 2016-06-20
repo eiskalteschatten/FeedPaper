@@ -21,6 +21,7 @@ class DefaultController extends Controller
             ->findBy(array(), array('feedName' => 'ASC'));
 
         $feeds = array();
+        $feedsWithoutFolders = array();
 
         foreach ($feedsResult as $result) {
             $feeds[] = array(
@@ -29,6 +30,15 @@ class DefaultController extends Controller
                 'icon' => $result->getIconUrl(),
                 'folder' => $result->getFolder()
             );
+
+            if ($result->getFolder() == '0') {
+                $feedsWithoutFolders[] = array(
+                    'id' => $result->getId(),
+                    'name' => $result->getFeedName(),
+                    'icon' => $result->getIconUrl(),
+                    'folder' => $result->getFolder()
+                );
+            }
         }
 
         $foldersResult = $this->getDoctrine()
@@ -57,6 +67,6 @@ class DefaultController extends Controller
         $getFeedPosts = $this->get('app.services.getFeedPosts');
         $posts = $getFeedPosts->getAllPosts();
 
-        return $this->render('default/index.html.twig', array('folders' => $folders, 'posts' => $posts));
+        return $this->render('default/index.html.twig', array('feedsWithoutFolders' => $feedsWithoutFolders, 'folders' => $folders, 'posts' => $posts));
     }
 }

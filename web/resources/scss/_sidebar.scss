@@ -17,6 +17,9 @@
         color: $bgGrayFontColor;
         padding: 5px 15px;
         width: 100%;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
 
         &:hover {
             background: #e4e4e4;
@@ -29,10 +32,6 @@
 
         &:active {
             background: #b4b4b4;
-        }
-
-        &.active {
-            background: #d4d4d4;
         }
 
         &.small {
