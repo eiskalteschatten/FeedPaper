@@ -25,6 +25,10 @@ $postHeight: 120px;
             opacity: 0.6;
         }
 
+        &.hidden {
+            display: none;
+        }
+
         .post-title {
             padding: 15px 15px 3px 15px;
             font-weight: bold;

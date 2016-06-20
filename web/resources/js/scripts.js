@@ -1,4 +1,4 @@
-window.onload = function() {
+$(document).ready(function() {
     $(window).keypress(function(e) {
         if (e.keyCode == 27) {
             closePopup();
@@ -11,7 +11,20 @@ window.onload = function() {
     });
 
     $('[data-toggle="tooltip"]').tooltip();
-}
+
+    $('.js-folder-filter-link').click(function() {
+        showFilterItem($(this), 'data-folder');
+    });
+
+    $('.js-feed-filter-link').click(function() {
+        showFilterItem($(this), 'data-feed');
+    });
+
+    $('#todayFilterLink').trigger('click');
+});
+
+
+// Popups
 
 function openPopup(url, popupClass) {
     $('.js-popup-box').addClass(popupClass);
@@ -73,6 +86,7 @@ function validateFeedTimer(field) {
     }, 700);
 }
 
+
 // Refresh all feeds
 
 function refreshAllFeeds() {
@@ -86,6 +100,7 @@ function refreshAllFeeds() {
         buttonIcon.removeClass('spin');
     });
 }
+
 
 // Posts
 
@@ -172,9 +187,72 @@ function markPostAsUnread() {
 }
 
 function markAllAsRead(url) {
-    $.post(url, function() {
-        $('.js-post').addClass('read');
+    var toMarkAsRead = [];
+
+    $('.js-post:not(.hidden)').each(function() {
+        toMarkAsRead.push($(this).attr('data-id'));
+    });
+
+    var vars = {
+        'ids': toMarkAsRead
+    };
+
+    $.post(url, vars, function() {
+        $('.js-post:not(.hidden)').addClass('read');
         $('.js-mark-as-unread').addClass('show');
         $('.js-mark-as-read').removeClass('show');
     });
+}
+
+
+// Post filters
+
+function showFilterAllUnread() {
+    changeActiveSidebarLink($('#allUnreadFilterLink'));
+
+    hidePostContent();
+    hideAllPosts();
+    $('.js-post:not(.read)').removeClass('hidden');
+}
+
+function showFilterToday() {
+    changeActiveSidebarLink($('#todayFilterLink'));
+
+    var todayUnix = new Date().getTime().toString();
+    var today = todayUnix.substr(0, 5);
+
+    hidePostContent();
+    hideAllPosts();
+    $('.js-post[data-post-date=' + today + ']').removeClass('hidden');
+}
+
+function showFilterAllFeeds() {
+    hidePostContent();
+    changeActiveSidebarLink($('#allFeedsFilterLink'));
+    $('.js-post').removeClass('hidden');
+}
+
+function showFilterItem(filterLink, attribute) {
+    changeActiveSidebarLink(filterLink);
+
+    var itemId = filterLink.attr('data-id');
+
+    hidePostContent();
+    hideAllPosts();
+    $('.js-post[' + attribute + '=' + itemId + ']').removeClass('hidden');
+}
+
+function hideAllPosts() {
+    $('.js-post').addClass('hidden');
+    $('.js-post').removeClass('selected');
+}
+
+function changeActiveSidebarLink(activeLink) {
+    $('.js-full-link').removeClass('active');
+    activeLink.addClass('active');
+}
+
+function hidePostContent() {
+    $('.js-post-content-placeholder').show();
+    $('.js-post-content-column').hide();
 }

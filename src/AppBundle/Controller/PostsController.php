@@ -66,8 +66,10 @@ class PostsController extends Controller
      * @Method("POST")
      */
     public function markAllAsRead(Request $request) {
+        $ids = $request->request->get('ids');
+
         $getFeedPosts = $this->get('app.services.getFeedPosts');
-        $getFeedPosts->markAllAsRead();
+        $getFeedPosts->markAllAsRead($ids);
 
         return new Response("ok");
     }

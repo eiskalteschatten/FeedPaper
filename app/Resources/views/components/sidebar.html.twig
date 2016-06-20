@@ -9,13 +9,13 @@
         <a href="#" onclick="markAllAsRead('{{ path('postsMarkAllAsRead') }}')" title="{% trans %}mark_all_as_read{% endtrans %}" data-toggle="tooltip" data-placement="bottom"><span class="glyphicon glyphicon-ok"></span></a>
     </div>
     <div class="section">
-        <a href="#" class="full-link"><span class="glyphicon glyphicon-list-alt"></span>{% trans %}all_unread{% endtrans %}</a>
-        <a href="#" class="full-link active"><span class="glyphicon glyphicon-calendar"></span>{% trans %}today{% endtrans %}</a>
-        <a href="#" class="full-link"><span class="glyphicon glyphicon-list"></span>{% trans %}all_feeds{% endtrans %}</a>
+        <a href="#" onclick="showFilterAllUnread()" id="allUnreadFilterLink" class="full-link js-full-link"><span class="glyphicon glyphicon-list-alt"></span>{% trans %}all_unread{% endtrans %}</a>
+        <a href="#" onclick="showFilterToday()" id="todayFilterLink" class="full-link js-full-link"><span class="glyphicon glyphicon-calendar"></span>{% trans %}today{% endtrans %}</a>
+        <a href="#" onclick="showFilterAllFeeds()" id="allFeedsFilterLink" class="full-link js-full-link"><span class="glyphicon glyphicon-list"></span>{% trans %}all_feeds{% endtrans %}</a>
     </div>
     <div class="section">
         {% for feed in feedsWithoutFolders %}
-            <a href="#" class="full-link">
+            <a href="#" class="full-link js-full-link js-feed-filter-link" data-id="{{ feed.id }}">
                 {% if feed.icon is not empty %}
                     <img src="{{ feed.icon }}" class="feed-favicon">
                 {% else %}
@@ -26,9 +26,9 @@
         {% endfor %}
 
         {% for folder in folders %}
-            <a href="#" class="full-link" data-id="{{ folder.id }}"><span class="glyphicon glyphicon-folder-close"></span>{{ folder.name }}</a>
+            <a href="#" class="full-link js-full-link js-folder-filter-link" data-id="{{ folder.id }}"><span class="glyphicon glyphicon-folder-close"></span>{{ folder.name }}</a>
             {% for feed in folder.feeds %}
-                <a href="#" class="full-link indented">
+                <a href="#" class="full-link js-full-link js-feed-filter-link indented" data-id="{{ feed.id }}">
                     {% if feed.icon is not empty %}
                         <img src="{{ feed.icon }}" class="feed-favicon">
                     {% else %}

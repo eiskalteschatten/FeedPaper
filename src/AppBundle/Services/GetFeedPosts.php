@@ -17,7 +17,7 @@ class GetFeedPosts
         $em = $this->doctrine->getManager();
 
         $queryResult = $em->createQueryBuilder()
-            ->select('p.id, p.postImage, p.postTitle, p.postPreview, p.feed, p.postDate, p.isRead, f.feedName')
+            ->select('p.id, p.postImage, p.postTitle, p.postPreview, p.feed, f.folder, p.postDate, p.isRead, f.feedName')
             ->from('AppBundle:Post', 'p')
             ->join('AppBundle:Feed', 'f', \Doctrine\ORM\Query\Expr\Join::WITH, 'f.id = p.feed')
             ->orderBy('p.postDate', 'DESC')
@@ -70,11 +70,11 @@ class GetFeedPosts
         $em->flush();
     }
 
-    public function markAllAsRead() {
+    public function markAllAsRead($ids) {
         $em = $this->doctrine->getManager();
-        $entities = $em->getRepository('AppBundle:Post')->findAll();
 
-        foreach($entities as $entity) {
+        foreach ($ids as $id) {
+            $entity = $em->getRepository('AppBundle:Post')->findOneBy(array('id' => $id));
             $entity->setIsRead(true);
         }
 
