@@ -12,7 +12,6 @@ before_script:
   - yes "" | pecl install intl
   - cp app/config/parameters.yml.travis app/config/parameters.yml
   - composer install
-  - sh test/setupdb.sh
   - php app/console doctrine:database:create --env=test
   - php app/console doctrine:schema:create --env=test
   - php app/console doctrine:fixtures:load -n --env=test
