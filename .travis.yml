@@ -6,7 +6,7 @@ php:
   - '7.0'
 
 before_script:
-  - pecl install php-intl
+  - pecl install intl
 
 before_install:
   - composer install
