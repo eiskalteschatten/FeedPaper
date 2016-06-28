@@ -9,4 +9,4 @@ before_script:
   - pecl install php-intl
 
 before_install:
-  -composer install
+  - composer install
