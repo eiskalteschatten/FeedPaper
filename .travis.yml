@@ -6,5 +6,5 @@ php:
   - '7.0'
 
 before_script:
-  - pecl install intl
+  - printf "\n" | pecl install intl
   - composer install
