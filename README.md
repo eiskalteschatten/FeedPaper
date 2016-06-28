@@ -1,5 +1,6 @@
 # FeedPaper
-[![Build Status](https://travis-ci.org/eiskalteschatten/FeedPaper.svg?branch=master)](https://travis-ci.org/eiskalteschatten/FeedPaper)){:style="float: right;"}
+[![Build Status](https://travis-ci.org/eiskalteschatten/FeedPaper.svg?branch=master)](https://travis-ci.org/eiskalteschatten/FeedPaper))
+
 A PHP-based RSS reader
 
 ## Requirements & Dependencies
