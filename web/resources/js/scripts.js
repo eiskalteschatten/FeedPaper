@@ -1,7 +1,13 @@
 $(document).ready(function() {
     $(window).keypress(function(e) {
-        if (e.keyCode == 27) {
-            closePopup();
+        switch(e.keyCode) {
+            case 27: // Esc
+                closePopup();
+                break;
+            case 38: // Arrow key up
+                break;
+            case 40: // Arrow key down
+                break;
         }
     });
 
