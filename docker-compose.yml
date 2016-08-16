@@ -1,0 +1,25 @@
+php:
+  build: .
+#  links:
+#    - db
+  volumes:
+    - ".:/var/www/feedpaper/"
+  environment:
+    XDEBUG_CONFIG: remote_host=192.168.99.1
+    PHP_IDE_CONFIG: serverName=feedpaper
+nginx:
+  image: nginx:stable
+  links:
+    - php
+  volumes_from:
+    - php
+  volumes:
+    - "./symfony.conf:/etc/nginx/conf.d/default.conf"
+  ports:
+    - "80:80"
+#db:
+#  image: mongo:3.2.1
+#  volumes:
+#    - /mnt/sda1/var/lib/mongo-data:/data/db
+#  ports:
+#    - "27017:27017"
