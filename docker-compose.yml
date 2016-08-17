@@ -2,7 +2,7 @@ version: '2'
 services:
   php:
     build: .
-    command: php /var/composer.phar install
+    command: sh docker/bootstrap.sh
     links:
       - db
     volumes:
@@ -19,12 +19,11 @@ services:
     volumes:
       - "./docker/symfony.conf:/etc/nginx/conf.d/default.conf"
     ports:
-      - "8080:80"
+      - "80:80"
   db:
     image: mysql:latest
     volumes:
       - "./.data/db:/var/lib/mysql"
-    restart: always
     environment:
       MYSQL_ROOT_PASSWORD: "feedpaper"
       MYSQL_DATABASE: "feedpaper"
