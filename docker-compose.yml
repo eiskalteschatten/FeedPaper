@@ -26,7 +26,9 @@ services:
     volumes:
       - "./.data/db:/var/lib/mysql"
     environment:
-      MYSQL_ROOT_PASSWORD: "feedpaper"
-      MYSQL_DATABASE: "feedpaper"
-      MYSQL_USER: "feedpaper"
-      MYSQL_PASSWORD: "feedpaper"
+      MYSQL_ROOT_PASSWORD: feedpaper
+      MYSQL_DATABASE: feedpaper
+      MYSQL_USER: root
+      MYSQL_PASSWORD: feedpaper
+    ports:
+      - 3306:3306
