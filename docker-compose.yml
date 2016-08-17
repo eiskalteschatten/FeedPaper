@@ -1,25 +1,32 @@
-php:
-  build: .
-#  links:
-#    - db
-  volumes:
-    - ".:/var/www/feedpaper/"
-  environment:
-    XDEBUG_CONFIG: remote_host=192.168.99.1
-    PHP_IDE_CONFIG: serverName=feedpaper
-nginx:
-  image: nginx:stable
-  links:
-    - php
-  volumes_from:
-    - php
-  volumes:
-    - "./symfony.conf:/etc/nginx/conf.d/default.conf"
-  ports:
-    - "80:80"
-#db:
-#  image: mongo:3.2.1
-#  volumes:
-#    - /mnt/sda1/var/lib/mongo-data:/data/db
-#  ports:
-#    - "27017:27017"
+version: '2'
+services:
+  php:
+    build: .
+    command: php /var/composer.phar install
+    links:
+      - db
+    volumes:
+      - ".:/var/www/feedpaper/"
+    environment:
+      XDEBUG_CONFIG: remote_host=192.168.99.1
+      PHP_IDE_CONFIG: serverName=feedpaper
+  nginx:
+    image: nginx:stable
+    links:
+      - php
+    volumes_from:
+      - php
+    volumes:
+      - "./docker/symfony.conf:/etc/nginx/conf.d/default.conf"
+    ports:
+      - "8080:80"
+  db:
+    image: mysql:latest
+    volumes:
+      - "./.data/db:/var/lib/mysql"
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: "feedpaper"
+      MYSQL_DATABASE: "feedpaper"
+      MYSQL_USER: "feedpaper"
+      MYSQL_PASSWORD: "feedpaper"

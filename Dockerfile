@@ -15,6 +15,3 @@ RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" &&
 USER dockeruser
 
 WORKDIR /var/www/feedpaper/
-
-RUN pwd && ls -la && \
-    php /var/composer.phar install
