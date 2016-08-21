@@ -19,4 +19,7 @@ visit_website: Webseite besuchen
 mark_as_unread: Als ungelesen markieren
 mark_as_read: Als gelesen markieren
 
+language: Sprache
+version: Version
+
 an_error_occurred: Ein Fehler ist aufgetreten. Bitte versuchen Sie noch einmal.

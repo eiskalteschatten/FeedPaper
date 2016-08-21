@@ -8,6 +8,7 @@ imports:
 parameters:
     locale: en
     app.locales: en|de
+    version: 0.1
 
 framework:
     #esi:             ~
@@ -35,6 +36,8 @@ framework:
 twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
+    globals:
+      version: "%version%"
 
 # Doctrine Configuration
 doctrine:

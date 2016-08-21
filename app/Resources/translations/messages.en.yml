@@ -21,4 +21,7 @@ visit_website: Visit Website
 mark_as_unread: Mark as unread
 mark_as_read: Mark as read
 
+language: Language
+version: Version
+
 an_error_occurred: An error occurred. Please try again.
