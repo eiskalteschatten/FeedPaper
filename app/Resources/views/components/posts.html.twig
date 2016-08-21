@@ -5,7 +5,7 @@
             {% set isRead = ' read' %}
         {% endif %}
 
-        <div class="post js-post{{ isRead }}" data-id="{{ post.id }}" data-feed="{{ post.feed }}" data-folder="{{ post.folder }}" data-post-date="{{ post.postDate | date('U') | slice(0, 5) }}">
+        <div class="post js-post{{ isRead }}" data-id="{{ post.id }}" data-feed="{{ post.feed }}" data-folder="{{ post.folder }}" data-post-date="{{ post.postDate | date('U') | slice(0, 5) }}" data-post-url="{{ post.postUrl }}">
             {% if post.postImage is not empty %}
                 <div class="post-image" style="background-image: url('{{ post.postImage }}')"></div>
             {% endif %}

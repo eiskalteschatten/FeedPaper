@@ -1,6 +1,10 @@
 $(document).ready(function() {
     $(window).keypress(function(e) {
         switch(e.keyCode) {
+            case 13: // Enter
+                var url = $('.js-post.selected').attr('data-post-url');
+                openUrlInNewTab(url);
+                break;
             case 27: // Esc
                 closePopup();
                 break;
@@ -18,6 +22,11 @@ $(document).ready(function() {
         selectPost($(this));
     });
 
+    $('.js-post').dblclick(function() {
+        var url = $(this).attr('data-post-url');
+        openUrlInNewTab(url);
+    });
+
     $('[data-toggle="tooltip"]').tooltip();
 
     $('.js-folder-filter-link').click(function() {
@@ -30,6 +39,12 @@ $(document).ready(function() {
 
     $('#todayFilterLink').trigger('click');
 });
+
+function openUrlInNewTab(url) {
+    if (url != "" && typeof url !== "undefined") {
+        window.open(url, '_blank');
+    }
+}
 
 
 // Popups

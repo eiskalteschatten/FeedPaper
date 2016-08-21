@@ -17,7 +17,7 @@ class GetFeedPosts
         $em = $this->doctrine->getManager();
 
         $queryResult = $em->createQueryBuilder()
-            ->select('p.id, p.postImage, p.postTitle, p.postPreview, p.feed, f.folder, p.postDate, p.isRead, f.feedName')
+            ->select('p.id, p.postImage, p.postTitle, p.postPreview, p.feed, p.postUrl, f.folder, p.postDate, p.isRead, f.feedName')
             ->from('AppBundle:Post', 'p')
             ->join('AppBundle:Feed', 'f', \Doctrine\ORM\Query\Expr\Join::WITH, 'f.id = p.feed')
             ->addOrderBy('p.isRead', 'ASC')
