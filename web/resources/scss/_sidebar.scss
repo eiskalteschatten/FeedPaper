@@ -15,15 +15,20 @@
     .full-link {
         display: block;
         color: $bgGrayFontColor;
-        padding: 5px 15px;
-        width: 100%;
+        cursor: pointer;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
+        padding: 5px 0 5px 15px;
+        width: 100%;
 
         &:hover {
             background: #e4e4e4;
             text-decoration: none;
+
+            .edit-feed {
+                display: block;
+            }
         }
 
         &:active, &:focus {
@@ -44,6 +49,12 @@
 
         &.indented {
             padding-left: 30px;
+        }
+
+        .edit-feed {
+            display: none;
+            float: right;
+            color: $bgGrayFontColor;
         }
 
         .glyphicon {

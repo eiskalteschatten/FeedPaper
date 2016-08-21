@@ -15,27 +15,29 @@
     </div>
     <div class="section">
         {% for feed in feedsWithoutFolders %}
-            <a href="#" class="full-link js-full-link js-feed-filter-link" data-id="{{ feed.id }}">
+            <div class="full-link js-full-link js-feed-filter-link" data-id="{{ feed.id }}">
+                <a href="#" class="edit-feed" title="{% trans %}edit_feed{% endtrans %}"><span class="glyphicon glyphicon-pencil"></span></a>
                 {% if feed.icon is not empty %}
                     <img src="{{ feed.icon }}" class="feed-favicon">
                 {% else %}
                     <span class="glyphicon glyphicon-globe"></span>
                 {% endif %}
                 {{ feed.name }}
-            </a>
+            </div>
         {% endfor %}
 
         {% for folder in folders %}
-            <a href="#" class="full-link js-full-link js-folder-filter-link" data-id="{{ folder.id }}"><span class="glyphicon glyphicon-folder-close"></span>{{ folder.name }}</a>
+            <div class="full-link js-full-link js-folder-filter-link" data-id="{{ folder.id }}"><span class="glyphicon glyphicon-folder-close"></span>{{ folder.name }}</div>
             {% for feed in folder.feeds %}
-                <a href="#" class="full-link js-full-link js-feed-filter-link indented" data-id="{{ feed.id }}">
+                <div href="#" class="full-link js-full-link js-feed-filter-link indented" data-id="{{ feed.id }}">
+                    <a href="#" class="edit-feed" title="{% trans %}edit_feed{% endtrans %}"><span class="glyphicon glyphicon-pencil"></span></a>
                     {% if feed.icon is not empty %}
                         <img src="{{ feed.icon }}" class="feed-favicon">
                     {% else %}
                         <span class="glyphicon glyphicon-globe"></span>
                     {% endif %}
                     {{ feed.name }}
-                </a>
+                </div>
             {% endfor %}
         {% endfor %}
     </div>
@@ -44,10 +46,6 @@
         <div class="dropup">
             <a href="#" title="{% trans %}settings{% endtrans %}" class="toolbar-icon" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-cog"></span></a>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                <li class="dropdown-header">{% trans %}options{% endtrans %}</li>
-                <li><a href="/en">{% trans %}options_edit_feeds{% endtrans %}</a></li>
-                <li><a href="/de">{% trans %}options_edit_folders{% endtrans %}</a></li>
-                <li role="separator" class="divider"></li>
                 <li class="dropdown-header">{% trans %}language{% endtrans %}</li>
                 <li><a href="/en">English</a></li>
                 <li><a href="/de">Deutsch</a></li>

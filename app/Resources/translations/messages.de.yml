@@ -12,6 +12,8 @@ all_unread: Ungelesen
 today: Heute
 all_feeds: Alle Feeds
 settings: Einstellungen
+edit_feed: Feed bearbeiten
+edit_folder: Ordner bearbeiten
 
 no_posts_available: Keine Posts verfügbar
 no_post_selected: Kein Post ausgewählt
@@ -20,9 +22,6 @@ mark_as_unread: Als ungelesen markieren
 mark_as_read: Als gelesen markieren
 
 options: Einstellungen
-options_edit_feeds: Feeds ändern
-options_edit_folders: Ordner ändern
-
 language: Sprache
 version: Version
 
