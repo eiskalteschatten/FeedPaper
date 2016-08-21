@@ -5,8 +5,10 @@ $(document).ready(function() {
                 closePopup();
                 break;
             case 38: // Arrow key up
+                onePostUp();
                 break;
             case 40: // Arrow key down
+                onePostDown();
                 break;
         }
     });
@@ -261,4 +263,39 @@ function changeActiveSidebarLink(activeLink) {
 function hidePostContent() {
     $('.js-post-content-placeholder').show();
     $('.js-post-content-column').hide();
+}
+
+
+// Navigate posts
+
+function onePostUp() {
+    var selected = $('.js-post.selected');
+    var next = undefined;
+
+    if (selected.length) {
+        next = selected.prev(':visible');
+    }
+    else {
+        next = $('.js-post:visible').last();
+    }
+
+    if (typeof next !== 'undefined') {
+        next.trigger('click');
+    }
+}
+
+function onePostDown() {
+    var selected = $('.js-post.selected');
+    var next = undefined;
+
+    if (selected.length) {
+        next = selected.next(':visible');
+    }
+    else {
+        next = $('.js-post:visible').first();
+    }
+
+    if (typeof next !== 'undefined') {
+        next.trigger('click');
+    }
 }
