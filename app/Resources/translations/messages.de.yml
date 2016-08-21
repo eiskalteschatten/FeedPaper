@@ -19,6 +19,10 @@ visit_website: Webseite besuchen
 mark_as_unread: Als ungelesen markieren
 mark_as_read: Als gelesen markieren
 
+options: Einstellungen
+options_edit_feeds: Feeds ändern
+options_edit_folders: Ordner ändern
+
 language: Sprache
 version: Version
 

@@ -21,6 +21,10 @@ visit_website: Visit Website
 mark_as_unread: Mark as unread
 mark_as_read: Mark as read
 
+options: Options
+options_edit_feeds: Edit Feeds
+options_edit_folders: Edit Folders
+
 language: Language
 version: Version
 
