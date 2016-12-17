@@ -8,4 +8,4 @@ wait
 php app/console doctrine:schema:update --force
 wait
 
-tail -f /dev/null
+tail -f /var/www/feedpaper/app/logs/dev.log
