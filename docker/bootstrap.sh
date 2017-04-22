@@ -2,7 +2,7 @@
 
 service php7.0-fpm start
 
-php /var/composer.phar install
+composer install
 wait
 
 php app/console doctrine:schema:update --force
