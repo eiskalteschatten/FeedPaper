@@ -10,17 +10,9 @@ services:
       - "./app/config/parameters.yml.docker:/var/www/feedpaper/app/config/parameters.yml"
     environment:
       XDEBUG_CONFIG: remote_host=192.168.99.1
-      PHP_IDE_CONFIG: serverName=feedpaper
-  nginx:
-    image: nginx:stable
-    links:
-      - php
-    volumes_from:
-      - php
-    volumes:
-      - "./docker/symfony.conf:/etc/nginx/conf.d/default.conf"
+      PHP_IDE_CONFIG: serverName=feedpaper\
     ports:
-      - "80:80"
+      - "8000:8000"
   db:
     image: mysql:latest
     volumes:
