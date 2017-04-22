@@ -8,13 +8,4 @@ wait
 php app/console doctrine:schema:update --force
 wait
 
-ln -sf ${PWD}/vendor/twbs/bootstrap web/resources/bootstrap
-wait
-
-php app/console assets:install --symlink web
-wait
-
-php app/console server:start 0.0.0.0:8000 --force
-wait
-
-tail -f /var/www/symfony/app/logs/dev.log
+tail -f /var/www/feedpaper/app/logs/dev.log
