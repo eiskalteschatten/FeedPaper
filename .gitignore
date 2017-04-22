@@ -12,5 +12,7 @@
 /composer.phar
 
 .idea/
+*.sublime*
+
 node_modules/
 .data/
